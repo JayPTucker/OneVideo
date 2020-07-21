@@ -92,7 +92,7 @@ function RegisterPage(props) {
           isSubmitting,
           handleChange,
           handleBlur,
-          handleSubmit,
+          handleSubmit
         } = props;
         return (
           <div className="app">
