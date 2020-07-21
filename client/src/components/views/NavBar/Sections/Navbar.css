@@ -31,5 +31,6 @@ li {
 } */
 
 .NavBarRow {
+  background-color: rgb(190, 190, 190);
   box-shadow: 1px 1px 1px black;
 }

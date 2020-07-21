@@ -9,22 +9,19 @@ import './Sections/Navbar.css';
 
 function NavBar() {
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <a className="logo" href="/">OneVideo</a>
-        </Col>
+    <Row className="NavBarRow text-center">
+      <Col>
+        <a className="logo" href="/">OneVideo</a>
+      </Col>
 
-        <Col className="justify-content-center LeftMenu">
-          <LeftMenu />
-          <button type="button" class="btn btn-success">Success</button>
-        </Col>
+      <Col className="LeftMenu">
+        <LeftMenu />
+      </Col>
 
-        <Col className="LoginSection">
-          <LoginSection />
-        </Col>
-      </Row>
-    </Container>
+      <Col className="LoginSection">
+        <LoginSection />
+      </Col>
+    </Row>
   )
 }
 

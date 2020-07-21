@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 import { Route, Switch } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -22,7 +21,7 @@ import UploadVideoPage from "./views/UploadVideoPage/UploadVideoPage";
 
 function App() {
   return (
-    <Container>
+    <Container fluid>
       <NavBar />
         <Route exact path="/" component={Auth(LandingPage, null)} />
         <Route exact path="/login" component={Auth(LoginPage, false)} />
