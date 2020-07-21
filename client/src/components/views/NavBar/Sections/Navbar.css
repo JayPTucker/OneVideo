@@ -3,9 +3,9 @@
   float: left;
 }
 
-.LeftMenu {
+/* .LeftMenu {
   justify-content: center !important;
-}
+} */
 
 .LoginSection {
   float: right;
@@ -21,14 +21,14 @@ li {
   display: inline;
 }
 
-a {
+/* a {
   color: black !important;
   margin-top: calc(22px + 2vmin) !important;
   padding-left: calc(6px + 1vmax);
   font-size: calc(12px + 1vmax);
   margin-left: calc(-10px + 1vmax);
   transition: all 0.2s ease-in-out;
-}
+} */
 
 .NavBarRow {
   box-shadow: 1px 1px 1px black;

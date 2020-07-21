@@ -1,15 +1,16 @@
 import React from 'react'
-import {Icon} from 'antd';
+import { Container, Row, Col } from "react-bootstrap";
 
 function Footer() {
     return (
-        <div style={{
-            height: '80px', display: 'flex',
-            flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', fontSize:'1rem'
-        }}>
-           <p> OneVideo - Jay Paul Tucker </p>
-        </div>
+        
+        <Container>
+            <Row className="justify-content-center text-center">
+                <Col>
+                    <p>Jay Paul Tucker</p>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

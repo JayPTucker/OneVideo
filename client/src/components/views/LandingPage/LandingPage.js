@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Avatar, Typography } from 'antd';
-import { Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import moment from 'moment';
-
-const { Title } = Typography
-const { Meta } = Card;
 
 function LandingPage() {
 
@@ -27,7 +23,7 @@ function LandingPage() {
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
 
-        return <Col>
+        return <Row>
             <div style={{ position: 'relative'}}>
                     <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                     <div className=" duration">
@@ -35,29 +31,26 @@ function LandingPage() {
                     </div>
 
                 </div>
-                <Meta
+                <div
                     avatar={
-                        <Avatar src={video.writer.image} />
+                        <div src={video.writer.image} />
                     }
                     title={video.title}
                 />
                 <span>{video.writer.name}</span>
                 <span style={{ marginLeft: '3rem' }}> Views: {video.views} </span>
                 - <span> {moment(video.createdAt).format("MMM Do YYYY")} </span>
-        </Col>
+        </Row>
     })
 
     return (
-        <div>
-            <Title level={2} > Recommended </Title>
-            <hr />
-
-            <Row>
-                {renderCards}
+        <Container fluid>
+            <Row className="justify-content-center text-center">
+                <Col>
+                    {renderCards}
+                </Col>
             </Row>
-            
-
-        </div>
+        </Container>
     )
 }
 

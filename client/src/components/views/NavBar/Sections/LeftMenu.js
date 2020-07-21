@@ -1,16 +1,11 @@
 import React from 'react';
-import { Menu } from 'antd';
 
 function LeftMenu(props) {
   return (
-    <Menu mode={props.mode}>
-    <Menu.Item key="mail">
+    <div>
       <a href="/">Home</a>
-    </Menu.Item>
-    <Menu.Item>
       <a href="/video/upload">Upload</a>
-    </Menu.Item>
-  </Menu>
+    </div>
   )
 }
 

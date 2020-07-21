@@ -1,5 +1,12 @@
 import React, { Suspense } from 'react';
+
+import 'bootstrap/dist/css/bootstrap.css';
+
+
 import { Route, Switch } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+
+
 import Auth from "../hoc/auth";
 // pages for this product
 import LandingPage from "./views/LandingPage/LandingPage.js";
@@ -15,16 +22,14 @@ import UploadVideoPage from "./views/UploadVideoPage/UploadVideoPage";
 
 function App() {
   return (
-    <Suspense fallback={(<div>Loading...</div>)}>
+    <Container>
       <NavBar />
-        <Switch>
-          <Route exact path="/" component={Auth(LandingPage, null)} />
-          <Route exact path="/login" component={Auth(LoginPage, false)} />
-          <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
-        </Switch>
+        <Route exact path="/" component={Auth(LandingPage, null)} />
+        <Route exact path="/login" component={Auth(LoginPage, false)} />
+        <Route exact path="/register" component={Auth(RegisterPage, false)} />
+        <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
       <Footer />
-    </Suspense>
+    </Container>
   );
 }
 
