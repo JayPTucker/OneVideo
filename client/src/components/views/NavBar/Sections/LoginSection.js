@@ -27,7 +27,7 @@ function RightMenu(props) {
   } else {
     return (
       <div>
-        <a onClick={logoutHandler}>Logout</a>
+        <button onClick={logoutHandler}>Logout</button>
       </div>
     )
   }

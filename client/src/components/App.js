@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { Route, Switch } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 import Auth from "../hoc/auth";
 // pages for this product

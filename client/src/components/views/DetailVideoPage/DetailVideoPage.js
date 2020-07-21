@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar, Typography } from 'antd';
+import { List, Avatar } from 'antd';
 
 import axios from 'axios';
 
@@ -16,7 +16,6 @@ function DetailVideoPage(props) {
         axios.post('/api/video/getVideo', videoVariable)
         .then(response => {
             if(response.data.success) {
-                console.log(response.data)
                 setVideo(response.data.video)
             } else {
                 alert('Failed to get Video Info')

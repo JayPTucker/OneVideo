@@ -2,8 +2,7 @@ import React from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import LoginSection from './Sections/LoginSection';
 
-import bootstrap from 'bootstrap';
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import './Sections/Navbar.css';
 
