@@ -23,9 +23,9 @@ function LandingPage() {
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
 
-        return <div>
+        return <Col>
             <div>
-                    <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
+                    <img style={{ width: '20%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                     <span style={{ marginLeft: '3rem' }}> Views: {video.views} </span> ||
                     <span> {minutes}:{seconds}</span>
                     
@@ -40,7 +40,7 @@ function LandingPage() {
                 <span>{video.writer.name} </span>
                 
                 - <span> {moment(video.createdAt).format("MMM Do YYYY")} </span>
-        </div>
+        </Col>
     })
 
     return (
