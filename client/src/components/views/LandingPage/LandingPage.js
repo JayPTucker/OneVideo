@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { FaCode } from "react-icons/fa";
-import { Card, Avatar, Col, Typography, Row } from 'antd';
+import { Card, Avatar, Typography } from 'antd';
+import { Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import moment from 'moment';
 
@@ -27,7 +27,7 @@ function LandingPage() {
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
 
-        return <Col lg={6} md={8} xs={24}>
+        return <Col>
             <div style={{ position: 'relative'}}>
                     <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                     <div className=" duration">
@@ -48,7 +48,7 @@ function LandingPage() {
     })
 
     return (
-        <div style={{ width: '85%', margin: '3rem auto'}}>
+        <div>
             <Title level={2} > Recommended </Title>
             <hr />
 
