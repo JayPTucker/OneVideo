@@ -14,6 +14,48 @@ const config = require("./config/key");
 //   .then(() => console.log("DB connected"))
 //   .catch(err => console.error(err));
 
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+// Enter copied or downloaded access id and secret here
+const ID = 'AKIAJBELKJXWQFWXYB6A';
+const SECRET = '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';
+
+// Enter the name of the bucket that you have created here
+const BUCKET_NAME = 'jpt-onevideo.com';
+
+
+// Initializing S3 Interface
+const s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET
+});
+
+const uploadFile = (fileName) => {
+    // read content from the file
+    const fileContent = fs.readFileSync(fileName);
+
+    // setting up s3 upload parameters
+    const params = {
+        Bucket: 'jpt-onevideo.com',
+        Key: 'twitter-logo.png', // file name you want to save as
+        Body: fileContent
+    };
+
+    // Uploading files to the bucket
+    s3.upload(params, function(err, data) {
+        if (err) {
+            throw err
+        }
+        console.log(`File uploaded successfully. ${data.Location}`)
+    });
+};
+
+// Enter the file you want to upload here
+uploadFile('twitter-logo.png');
+
+
+
 const mongoose = require("mongoose");
 const connect = mongoose.connect(config.mongoURI,
   {
@@ -37,8 +79,6 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/video', require('./routes/video'));
 
 
-//use this to show the image you have in node js server to client (react js)
-//https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
 app.use('/uploads', express.static('uploads'));
 
 // Serve static assets if in production
