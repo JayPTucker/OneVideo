@@ -1,12 +1,14 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require('cors')
 
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-const config = require("./config/key");
+// const config = require("./config/key");
 
 // const mongoose = require("mongoose");
 // mongoose
@@ -18,12 +20,11 @@ const fs = require('fs');
 const AWS = require('aws-sdk');
 
 // Enter copied or downloaded access id and secret here
-const ID = 'AKIAJBELKJXWQFWXYB6A';
-const SECRET = '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';
+const ID = process.env.AWS_ACCESS_KEY;
+const SECRET = process.env.AWS_SECRET_ACCESS;
 
 // Enter the name of the bucket that you have created here
 const BUCKET_NAME = 'jpt-onevideo.com';
-
 
 // Initializing S3 Interface
 const s3 = new AWS.S3({
@@ -57,7 +58,7 @@ uploadFile('twitter-logo.png');
 
 
 const mongoose = require("mongoose");
-const connect = mongoose.connect(config.mongoURI,
+const connect = mongoose.connect(process.env.mongoURI,
   {
     useNewUrlParser: true, useUnifiedTopology: true,
     useCreateIndex: true, useFindAndModify: false
