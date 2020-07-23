@@ -32,7 +32,7 @@ function DetailVideoPage(props) {
         <Row>
             <Col md={9}>
                 <div className="postPage" style={{ width: '100%' }}>
-                <video style={{ width: '100%' }} src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/uploads%5C1595494342909_2020-07-09+18-23-25.mp4`} controls></video>
+                <video style={{ width: '100%' }} src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${Video.filePath}`} controls></video>
                 {/* <video src="https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/uploads%5C1595494342909_2020-07-09+18-23-25.mp4" width="1020" height="580"></video> */}
 
 

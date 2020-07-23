@@ -58,11 +58,9 @@ function UploadVideoPage(props) {
             return alert('Please Log in First')
         }
 
-        // if (title === "" || Description === "" ||
-        //     Categories === "" || FilePath === "" ||
-        //     Duration === "" || Thumbnail === "") {
-        //     return alert('Please first fill all the fields')
-        // }
+        if (title === "" || Description === "") {
+            return alert('Please first fill all the fields')
+        }
 
         const variables = {
             writer: user.userData._id,

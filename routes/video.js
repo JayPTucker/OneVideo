@@ -7,9 +7,25 @@ const { Video } = require("../models/Video");
 
 const { auth } = require("../middleware/auth");
 
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+// Enter copied or downloaded access id and secret here
+const ID = process.env.AWS_ACCESS_KEY;
+const SECRET = process.env.AWS_SECRET_ACCESS;
+
+// Enter the name of the bucket that you have created here
+const BUCKET_NAME = 'jpt-onevideo.com';
+
+// Initializing S3 Interface
+const s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET
+});
+
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads/')
+      cb(null, '')
     },
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}_${file.originalname}`)
@@ -50,23 +66,23 @@ router.post("/thumbnail", (req, res) => {
   })
 
 
-  ffmpeg(req.body.filePath)
-  .on('filenames', function (filenames) {
-      console.log('Will generate ' + filenames.join(', '))
-      thumbsFilePath = "uploads/thumbnails/" + filenames[0];
-  })
-  .on('end', function () {
-      console.log('Screenshots taken');
-      return res.json({ success: true, thumbsFilePath: thumbsFilePath, fileDuration: fileDuration})
-  })
-  .screenshots({
-      // Will take screens at 20%, 40%, 60% and 80% of the video
-      count: 3,
-      folder: 'uploads/thumbnails',
-      size:'320x240',
-      // %b input basename ( filename w/o extension )
-      filename:'thumbnail-%b.png'
-  });
+  // ffmpeg(req.body.filePath)
+  // .on('filenames', function (filenames) {
+  //     console.log('Will generate ' + filenames.join(', '))
+  //     thumbsFilePath = "uploads/thumbnails/" + filenames[0];
+  // })
+  // .on('end', function () {
+  //     console.log('Screenshots taken');
+  //     return res.json({ success: true, thumbsFilePath: thumbsFilePath, fileDuration: fileDuration})
+  // })
+  // .screenshots({
+  //     // Will take screens at 20%, 40%, 60% and 80% of the video
+  //     count: 3,
+  //     folder: 'uploads/thumbnails/',
+  //     size:'320x240',
+  //     // %b input basename ( filename w/o extension )
+  //     filename:'thumbnail-%b.png'
+  // });
 
 });
 
@@ -88,28 +104,12 @@ router.post("/uploadVideo", (req, res) => {
 
   console.log(req.body.filePath)
 
-  // video.save((err, video) => {
-  //   if(err) return res.status(400).json({ success: false, err })
-  //   return res.status(200).json({
-  //     success: true
-  //   })
-  // })
-  
-  const fs = require('fs');
-  const AWS = require('aws-sdk');
-  
-  // Enter copied or downloaded access id and secret here
-  const ID = process.env.AWS_ACCESS_KEY;
-  const SECRET = process.env.AWS_SECRET_ACCESS;
-  
-  // Enter the name of the bucket that you have created here
-  const BUCKET_NAME = 'jpt-onevideo.com';
-  
-  // Initializing S3 Interface
-  const s3 = new AWS.S3({
-      accessKeyId: ID,
-      secretAccessKey: SECRET
-  });
+  video.save((err, video) => {
+    if(err) return res.status(400).json({ success: false, err })
+    return res.status(200).json({
+      success: true
+    })
+  })
   
   const uploadFile = (fileName) => {
     // read content from the file
