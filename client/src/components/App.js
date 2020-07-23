@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/register" component={Auth(RegisterPage, false)} />
         <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
-        <Route exact path="/video/:videoID" component={Auth(DetailVideoPage, null)} />
+        <Route exact path="/watch/:videoID" component={Auth(DetailVideoPage, null)} />
       <Footer />
     </Container>
   );

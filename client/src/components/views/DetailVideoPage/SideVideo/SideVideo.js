@@ -9,7 +9,7 @@ function SideVideo() {
     const [SideVideos, setSideVideos] = useState([])
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.get('/api/watch/getVideos')
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.videos)
@@ -30,13 +30,13 @@ function SideVideo() {
        return (
        <Row>
             <Col>
-                <a href={`/video/${video._id}`}  style={{ color:'gray' }}>
+                <a href={`/watch/${video._id}`}  style={{ color:'gray' }}>
                     <img style={{ width: "100%" }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail" />
                 </a>
             </Col>
 
             <Col>
-                <a href={`/video/${video._id}`} style={{ color:'gray' }}>
+                <a href={`/watch/${video._id}`} style={{ color:'gray' }}>
                     <span>{video.title}  </span><br />
                     <span>{video.writer.name}</span><br />
                     <span>{video.views} Views || </span>

@@ -8,7 +8,7 @@ function LandingPage() {
     const [Videos, setVideos] = useState([])
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.get('/api/watch/getVideos')
         .then(response => {
             if(response.data.success) {
                 setVideos(response.data.videos)
@@ -24,7 +24,7 @@ function LandingPage() {
         var seconds = Math.floor(video.duration - minutes * 60);
 
         return <Col>
-                <a href={`/video/${video._id}`}>
+                <a href={`/watch/${video._id}`}>
                     <img style={{ width: '20%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                     <span style={{ marginLeft: '3rem' }}> Views: {video.views} </span> ||
                     <span> {minutes}:{seconds}</span>

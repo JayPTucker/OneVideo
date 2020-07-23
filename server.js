@@ -7,47 +7,6 @@ const cors = require('cors')
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-// const fs = require('fs');
-// const AWS = require('aws-sdk');
-
-// // Enter copied or downloaded access id and secret here
-// const ID = process.env.AWS_ACCESS_KEY;
-// const SECRET = process.env.AWS_SECRET_ACCESS;
-
-// // Enter the name of the bucket that you have created here
-// const BUCKET_NAME = 'jpt-onevideo.com';
-
-// // Initializing S3 Interface
-// const s3 = new AWS.S3({
-//     accessKeyId: ID,
-//     secretAccessKey: SECRET
-// });
-
-// const uploadFile = (fileName) => {
-//     // read content from the file
-//     const fileContent = fs.readFileSync(fileName);
-
-//     // setting up s3 upload parameters
-//     const params = {
-//         Bucket: BUCKET_NAME,
-//         Key: 'twitter-logo.png', // file name you want to save as
-//         Body: fileContent
-//     };
-
-//     // Uploading files to the bucket
-//     s3.upload(params, function(err, data) {
-//         if (err) {
-//             throw err
-//         }
-//         console.log(`File uploaded successfully. ${data.Location}`)
-//     });
-// };
-
-// Enter the file you want to upload here
-// uploadFile('twitter-logo.png');
-
-
-
 const mongoose = require("mongoose");
 const connect = mongoose.connect(process.env.MONGO_URI,
   {
@@ -59,20 +18,15 @@ const connect = mongoose.connect(process.env.MONGO_URI,
 
 app.use(cors())
 
-//to not get any deprecation warning or error
-//support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
-//to get json data
-// support parsing of application/json type post data
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/video', require('./routes/video'));
-app.use('/api/watch', require('./routes/video'));
+app.use('/api/watch', require('./routes/watch'));
 
-
-app.use('/uploads', express.static('uploads'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

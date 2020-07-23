@@ -23,47 +23,40 @@ const s3 = new AWS.S3({
     secretAccessKey: SECRET
 });
 
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, '')
-    },
-    filename: (req, file, cb) => {
-      cb(null, `${Date.now()}_${file.originalname}`)
-    },
-    fileFilter: (req, file, cb) => {
-        const ext = path.extname(file.originalname)
-        if(ext !== '.mp4'){
-            return cb(res.status(400).end('Only .mp4 File Types are allowed'), false)
-        }
-        cb(null, true)
-    }
-  })
+// var storage = multer.diskStorage({
+//     filename: (req, file, cb) => {
+//       cb(null, `${Date.now()}_${file.originalname}`)
+//     },
+//     fileFilter: (req, file, cb) => {
+//         const ext = path.extname(file.originalname)
+//         if(ext !== '.mp4', '.mov'){
+//             return cb(res.status(400).end('Only .mp4 and .mov File Types are allowed'), false)
+//         }
+//         cb(null, true)
+//     }
+//   })
    
-  var upload = multer({ storage: storage }).single("file")
+//   var upload = multer({ storage: storage }).single("file")
 
 
 router.post("/uploadfiles", (req, res) => {
 
-    upload(req, res, err => {
-        if(err) {
-            return res.json({ success: false, err })
-        }
-        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })  
-    })
+    console.log("UPLOADING FILES")
+    
 });
 
 // --------------------------------------
 
 router.post("/thumbnail", (req, res) => {
 
-  let thumbsFilePath ="";
-  let fileDuration ="";
+  // let thumbsFilePath ="";
+  // let fileDuration ="";
 
-  ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
-      console.dir(metadata);
+  // ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
+  //     console.dir(metadata);
 
-      fileDuration = metadata.format.duration;
-  })
+  //     fileDuration = metadata.format.duration;
+  // })
 
 
   // ffmpeg(req.body.filePath)
@@ -86,15 +79,15 @@ router.post("/thumbnail", (req, res) => {
 
 });
 
-router.get("/getVideos", (req, res) => {
+// router.get("/getVideos", (req, res) => {
 
-    Video.find()
-      .populate('writer')
-      .exec((err, videos) => {
-        if(err) return res.status(400).send(err);
-        res.status(200).json({ success: true, videos })
-      })
-});
+//     Video.find()
+//       .populate('writer')
+//       .exec((err, videos) => {
+//         if(err) return res.status(400).send(err);
+//         res.status(200).json({ success: true, videos })
+//       })
+// });
 
 
 // Shows all the videos on the Home page
@@ -137,14 +130,14 @@ router.post("/uploadVideo", (req, res) => {
 
 
 // Allows us to Watch the Videos
-router.post("/getVideo", (req, res) => {
-    Video.findOne({ "_id" : req.body.videoID })
-    .populate('writer')
-    .exec((err, video) => {
-      if(err) return res.status(400).send(err);
-      res.status(200).json({ success: true, video })
-    })
-});
+// router.post("/getVideo", (req, res) => {
+//     Video.findOne({ "_id" : req.body.videoID })
+//     .populate('writer')
+//     .exec((err, video) => {
+//       if(err) return res.status(400).send(err);
+//       res.status(200).json({ success: true, video })
+//     })
+// });
 
 
 module.exports = router;
