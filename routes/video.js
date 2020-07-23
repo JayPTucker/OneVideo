@@ -88,12 +88,12 @@ router.post("/uploadVideo", (req, res) => {
 
   console.log(req.body.filePath)
 
-  video.save((err, video) => {
-    if(err) return res.status(400).json({ success: false, err })
-    return res.status(200).json({
-      success: true
-    })
-  })
+  // video.save((err, video) => {
+  //   if(err) return res.status(400).json({ success: false, err })
+  //   return res.status(200).json({
+  //     success: true
+  //   })
+  // })
   
   const fs = require('fs');
   const AWS = require('aws-sdk');
@@ -139,6 +139,7 @@ router.post("/uploadVideo", (req, res) => {
 
 router.post("/getVideo", (req, res) => {
     Video.findOne({ "_id" : req.body.videoID })
+    // https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/uploads%5C1595494342909_2020-07-09+18-23-25.mp4
     .populate('writer')
     .exec((err, video) => {
       if(err) return res.status(400).send(err);

@@ -11,7 +11,7 @@ function NavBar() {
     <Row className="NavBarRow text-center">
       <Col>
         <a className="logo" href="/">OneVideo</a>
-        <img src='http://jpt-onevideo.com.s3.amazonaws.com/twitter-logo.png'></img>
+        <video src="https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/uploads%5C1595494342909_2020-07-09+18-23-25.mp4" width="1020" height="580"></video>
       </Col>
 
       <Col className="LeftMenu">
