@@ -80,6 +80,7 @@ function UploadVideoPage(props) {
                 if (response.data.success) {
                     alert('video Uploaded Successfully')
                     props.history.push('/')
+
                 } else {
                     alert('Failed to upload video')
                 }

@@ -4,17 +4,8 @@ const app = express();
 const path = require("path");
 const cors = require('cors')
 
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
-// const config = require("./config/key");
-
-// const mongoose = require("mongoose");
-// mongoose
-//   .connect(config.mongoURI, { useNewUrlParser: true })
-//   .then(() => console.log("DB connected"))
-//   .catch(err => console.error(err));
 
 const fs = require('fs');
 const AWS = require('aws-sdk');
@@ -32,28 +23,28 @@ const s3 = new AWS.S3({
     secretAccessKey: SECRET
 });
 
-const uploadFile = (fileName) => {
-    // read content from the file
-    const fileContent = fs.readFileSync(fileName);
+// const uploadFile = (fileName) => {
+//     // read content from the file
+//     const fileContent = fs.readFileSync(fileName);
 
-    // setting up s3 upload parameters
-    const params = {
-        Bucket: 'jpt-onevideo.com',
-        Key: 'twitter-logo.png', // file name you want to save as
-        Body: fileContent
-    };
+//     // setting up s3 upload parameters
+//     const params = {
+//         Bucket: BUCKET_NAME,
+//         Key: 'twitter-logo.png', // file name you want to save as
+//         Body: fileContent
+//     };
 
-    // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err
-        }
-        console.log(`File uploaded successfully. ${data.Location}`)
-    });
-};
+//     // Uploading files to the bucket
+//     s3.upload(params, function(err, data) {
+//         if (err) {
+//             throw err
+//         }
+//         console.log(`File uploaded successfully. ${data.Location}`)
+//     });
+// };
 
 // Enter the file you want to upload here
-uploadFile('twitter-logo.png');
+// uploadFile('twitter-logo.png');
 
 
 

@@ -7,7 +7,6 @@ const { Video } = require("../models/Video");
 
 const { auth } = require("../middleware/auth");
 
-
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'uploads/')
@@ -25,7 +24,7 @@ var storage = multer.diskStorage({
   })
    
   var upload = multer({ storage: storage }).single("file")
-  
+
 
 router.post("/uploadfiles", (req, res) => {
 
@@ -33,9 +32,11 @@ router.post("/uploadfiles", (req, res) => {
         if(err) {
             return res.json({ success: false, err })
         }
-        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
+        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })  
     })
 });
+
+// --------------------------------------
 
 router.post("/thumbnail", (req, res) => {
 
@@ -79,9 +80,13 @@ router.get("/getVideos", (req, res) => {
       })
 });
 
+
+
 router.post("/uploadVideo", (req, res) => {
 
   const video = new Video(req.body)
+
+  console.log(req.body.filePath)
 
   video.save((err, video) => {
     if(err) return res.status(400).json({ success: false, err })
@@ -89,6 +94,45 @@ router.post("/uploadVideo", (req, res) => {
       success: true
     })
   })
+  
+  const fs = require('fs');
+  const AWS = require('aws-sdk');
+  
+  // Enter copied or downloaded access id and secret here
+  const ID = process.env.AWS_ACCESS_KEY;
+  const SECRET = process.env.AWS_SECRET_ACCESS;
+  
+  // Enter the name of the bucket that you have created here
+  const BUCKET_NAME = 'jpt-onevideo.com';
+  
+  // Initializing S3 Interface
+  const s3 = new AWS.S3({
+      accessKeyId: ID,
+      secretAccessKey: SECRET
+  });
+  
+  const uploadFile = (fileName) => {
+    // read content from the file
+      const fileContent = fs.readFileSync(fileName);
+
+      // setting up s3 upload parameters
+      const params = {
+          Bucket: BUCKET_NAME,
+          Key: req.body.filePath, // file name you want to save as
+          Body: fileContent
+      };
+
+      // Uploading files to the bucket
+      s3.upload(params, function(err, data) {
+          if (err) {
+              throw err
+          }
+          console.log(`File uploaded successfully. ${data.Location}`)
+      });
+  };
+
+  uploadFile(req.body.filePath)
+
 });
 
 
