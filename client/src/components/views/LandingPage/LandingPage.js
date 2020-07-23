@@ -33,9 +33,9 @@ function LandingPage() {
                         avatar={
                             <div src={video.writer.image} />
                         }
-                        title={video.title}
                     />
-                    <span>{video.writer.name} </span>
+                    <span>{video.title}<br/></span>
+                    <span>{video.writer.name}</span>
                     
                     - <span> {moment(video.createdAt).format("MMM Do YYYY")} </span>
                 </a>

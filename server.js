@@ -7,21 +7,21 @@ const cors = require('cors')
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-const fs = require('fs');
-const AWS = require('aws-sdk');
+// const fs = require('fs');
+// const AWS = require('aws-sdk');
 
-// Enter copied or downloaded access id and secret here
-const ID = process.env.AWS_ACCESS_KEY;
-const SECRET = process.env.AWS_SECRET_ACCESS;
+// // Enter copied or downloaded access id and secret here
+// const ID = process.env.AWS_ACCESS_KEY;
+// const SECRET = process.env.AWS_SECRET_ACCESS;
 
-// Enter the name of the bucket that you have created here
-const BUCKET_NAME = 'jpt-onevideo.com';
+// // Enter the name of the bucket that you have created here
+// const BUCKET_NAME = 'jpt-onevideo.com';
 
-// Initializing S3 Interface
-const s3 = new AWS.S3({
-    accessKeyId: ID,
-    secretAccessKey: SECRET
-});
+// // Initializing S3 Interface
+// const s3 = new AWS.S3({
+//     accessKeyId: ID,
+//     secretAccessKey: SECRET
+// });
 
 // const uploadFile = (fileName) => {
 //     // read content from the file
@@ -69,6 +69,7 @@ app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/video', require('./routes/video'));
+app.use('/api/watch', require('./routes/video'));
 
 
 app.use('/uploads', express.static('uploads'));

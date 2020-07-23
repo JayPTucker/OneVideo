@@ -97,7 +97,7 @@ router.get("/getVideos", (req, res) => {
 });
 
 
-
+// Shows all the videos on the Home page
 router.post("/uploadVideo", (req, res) => {
 
   const video = new Video(req.body)
@@ -136,10 +136,9 @@ router.post("/uploadVideo", (req, res) => {
 });
 
 
-
+// Allows us to Watch the Videos
 router.post("/getVideo", (req, res) => {
     Video.findOne({ "_id" : req.body.videoID })
-    // https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/uploads%5C1595494342909_2020-07-09+18-23-25.mp4
     .populate('writer')
     .exec((err, video) => {
       if(err) return res.status(400).send(err);

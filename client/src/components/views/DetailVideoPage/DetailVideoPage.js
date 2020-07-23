@@ -18,7 +18,7 @@ function DetailVideoPage(props) {
     }
 
     useEffect(() => {
-        axios.post('/api/video/getVideo', videoVariable)
+        axios.post('/api/watch/getVideo', videoVariable)
         .then(response => {
             if(response.data.success) {
                 setVideo(response.data.video)
@@ -41,7 +41,7 @@ function DetailVideoPage(props) {
                 >
                     <List.Item.Meta
                         avatar={<Avatar src={Video.writer && Video.writer.image} />}
-                        title={<a href="https://ant.design">{Video.title}</a>}
+                        title={Video.title}
                         description={Video.description}
                     />
                     <div></div>
