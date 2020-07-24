@@ -6,6 +6,29 @@ function Subscriber(props) {
     const userFrom = props.userFrom
 
     const [SubscribeNumber, setSubscribeNumber] = useState(0)
+    const [Subscribed, setSubscribed] = useState(false)
+
+    const onSubscribe = () => {
+
+        let subscribeVariables = {
+            userTo: userTo,
+            userFrom: userFrom
+        }
+
+        if(Subscribed) {
+            // SUBSCRIBED ALREADY:
+        } else {
+            // NOT SUBSCRIBED YET:
+            axios.post('/api/subscribe/subscribe', subscribeVariables)
+                .then(response => {
+                    if(response.data.success) {
+
+                    } else {
+                        alert('Failed to Subscribe to this Channel')
+                    }
+                })
+        }
+    }
 
     useEffect(() => {
 
@@ -23,6 +46,7 @@ function Subscriber(props) {
         .then(response => {
             if(response.data.success) {
                 console.log(response.data.subscribed)
+                setSubscribed(response.data.subscribed)
             } else {
                 alert('Failed to get Subscriber Information')
             }
@@ -34,8 +58,8 @@ function Subscriber(props) {
 
     return (
         <div>
-            <button>
-                Subscribe
+            <button onClick={onSubscribe}>
+                {SubscribeNumber} {Subscribed? 'Subscribed': 'Subscribe'}
             </button>
             
         </div>
