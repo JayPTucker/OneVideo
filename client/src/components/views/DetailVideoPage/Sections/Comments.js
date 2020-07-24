@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Row, Col } from "react-bootstrap";
+import SingleComment from './SingleComment'
 
 function Comments(props) {
 
@@ -40,6 +41,16 @@ function Comments(props) {
             <p>Replies</p>
             <hr />
             {console.log(props.CommentLists)}
+
+            {props.CommentLists && props.CommentLists.map((comment, index) => (
+
+                (!comment.responseTo &&
+
+                    <React.Fragment>
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                    </React.Fragment>
+                )
+            ))}
 
             <form onSubmit={onSubmit}>
                 <input
