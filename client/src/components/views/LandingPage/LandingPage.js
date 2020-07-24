@@ -23,7 +23,7 @@ function LandingPage() {
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor(video.duration - minutes * 60);
 
-        return <Col>
+        return <Col key={video._id}>
                 <a href={`/watch/${video._id}`}>
                     <img style={{ width: '20%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                     <span style={{ marginLeft: '3rem' }}> Views: {video.views} </span> ||
