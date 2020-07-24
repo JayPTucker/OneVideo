@@ -28,10 +28,10 @@ function SideVideo() {
         var seconds = Math.floor(video.duration - minutes * 60);
 
        return (
-       <Row style={{ padding:'20px' }}>
+       <Row key={video._id} style={{ padding:'20px' }}>
             <Col>
                 <a href={`/watch/${video._id}`}  style={{ color:'gray' }}>
-                    <img style={{ width: "100%" }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail" />
+                    <img style={{ width: "100%" }} src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${video.thumbnail}`} alt="thumbnail" />
                 </a>
             </Col>
 
@@ -43,8 +43,6 @@ function SideVideo() {
                     <span>{minutes}:{seconds}</span>
                 </a>
             </Col>
-
-            
         </Row>
        )
     })

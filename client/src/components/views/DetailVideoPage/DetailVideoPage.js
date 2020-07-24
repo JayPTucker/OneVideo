@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from "react-bootstrap";
 import { List, Avatar } from 'antd';
-import Subscriber from './Sections/Subscriber';
 
+import Subscriber from './Sections/Subscriber';
 import SideVideo from './Sections/SideVideo';
+import Comments from './Sections/Comments';
 
 import "./DetailVideoPage.css";
 
@@ -13,6 +14,7 @@ function DetailVideoPage(props) {
 
     const videoID = props.match.params.videoID
     const [Video, setVideo] = useState([])
+    const [CommentLists, setCommentLists] = useState([])
 
     const videoVariable = {
         videoID: videoID
@@ -29,6 +31,12 @@ function DetailVideoPage(props) {
         })
     }, [])
 
+    const updateComment = (newComment) => {
+        setCommentLists(CommentLists.concat(newComment))
+    }
+
+
+ 
     if(Video.writer) {
         return (
             <Row>
@@ -47,22 +55,10 @@ function DetailVideoPage(props) {
                             <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />
                         </Col>
                     </Row>
-                    {/* VIDEO AUTHOR: */}
-                    
 
-
-                
-                    {/* <List.Item
-                        actions={[ <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />]}
-                    >
-                        <List.Item.Meta
-                            avatar={<Avatar src={Video.writer && Video.writer.image} />}
-                            title={Video.title}
-                            description={Video.description}
-                        />
-
-                    </List.Item> */}
-    
+                    <Row>
+                        <Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment} />
+                    </Row>
 
                 </Col>
     
