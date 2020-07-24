@@ -98,7 +98,6 @@ router.post("/uploadVideo", (req, res) => {
   console.log(req.body.filePath)
 
   video.save((err, video) => {
-    if(err) return res.status(400).json({ success: false, err })
     return res.status(200).json({
       success: true
     })
