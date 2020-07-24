@@ -58,35 +58,80 @@ router.post("/uploadfiles", (req, res) => {
 
 router.post("/thumbnail", (req, res) => {
 
-  console.log("Thumbnail Creation")
+  let thumbsFilePath ="";
+  let fileDuration ="";
 
-  // let thumbsFilePath ="";
-  // let fileDuration ="";
-
-  // ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
-  //     console.dir(metadata);
-
-  //     fileDuration = metadata.format.duration;
-  // })
+  ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
+      fileDuration = metadata.format.duration;
+  })
 
 
-  // ffmpeg(req.body.filePath)
-  // .on('filenames', function (filenames) {
-  //     console.log('Will generate ' + filenames.join(', '))
-  //     thumbsFilePath = "uploads/thumbnails/" + filenames[0];
-  // })
-  // .on('end', function () {
-  //     console.log('Screenshots taken');
-  //     return res.json({ success: true, thumbsFilePath: thumbsFilePath, fileDuration: fileDuration})
-  // })
-  // .screenshots({
-  //     // Will take screens at 20%, 40%, 60% and 80% of the video
-  //     count: 3,
-  //     folder: 'uploads/thumbnails/',
-  //     size:'320x240',
-  //     // %b input basename ( filename w/o extension )
-  //     filename:'thumbnail-%b.png'
-  // });
+  ffmpeg(req.body.filePath)
+  .on('filenames', function (filenames) {
+      console.log('Will generate ' + filenames.join(', '))
+      thumbsFilePath = filenames[0];
+      // console.log(filenames.join(', '))
+
+
+  })
+  .on('end', function () {
+      console.log('Screenshots taken');
+      
+
+      const uploadFile = (fileName) => {
+        // read content from the file
+          const fileContent = fs.readFileSync(fileName);
+  
+          // setting up s3 upload parameters
+          const params = {
+              Bucket: BUCKET_NAME,
+              Key: thumbsFilePath, // file name you want to save as
+              Body: fileContent
+          };
+  
+          // Uploading files to the bucket
+          s3.upload(params, function(err, data) {
+              if (err) {
+                  throw err
+              }
+              console.log(`File uploaded successfully. ${data.Location}`)
+          });
+      };
+  
+      uploadFile(thumbsFilePath)
+
+      return res.json({ success: true, thumbsFilePath: thumbsFilePath, fileDuration: fileDuration})
+  })
+  .screenshots({
+      // Will take screens at 20%, 40%, 60% and 80% of the video
+      count: 1,
+      size:'320x240',
+      // %b input basename ( filename w/o extension )
+      filename:'thumbnail-%b.png'
+  });
+
+
+  // const uploadFile = (fileName) => {
+  //   // read content from the file
+  //     const fileContent = fs.readFileSync(fileName);
+
+  //     // setting up s3 upload parameters
+  //     const params = {
+  //         Bucket: BUCKET_NAME,
+  //         Key: req.body.filePath, // file name you want to save as
+  //         Body: fileContent
+  //     };
+
+  //     // Uploading files to the bucket
+  //     s3.upload(params, function(err, data) {
+  //         if (err) {
+  //             throw err
+  //         }
+  //         console.log(`File uploaded successfully. ${data.Location}`)
+  //     });
+  // };
+
+  // uploadFile(req.body.filePath)
 
 });
 
@@ -94,8 +139,6 @@ router.post("/thumbnail", (req, res) => {
 router.post("/uploadVideo", (req, res) => {
 
   const video = new Video(req.body)
-
-  console.log(req.body.filePath)
 
   video.save((err, video) => {
     return res.status(200).json({

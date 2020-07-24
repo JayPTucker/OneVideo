@@ -76,11 +76,11 @@ function UploadVideoPage(props) {
         axios.post('/api/video/uploadVideo', variables)
             .then(response => {
                 if (response.data.success) {
-                    alert('video Uploaded Successfully')
+                    alert('Video Uploaded Successfully')
                     props.history.push('/')
 
                 } else {
-                    alert('Failed to upload video')
+                    alert('Failed to Upload Video')
                 }
             })
 
@@ -92,8 +92,6 @@ function UploadVideoPage(props) {
         const config = {
             header: { 'content-type': 'multipart/form-data' }
         }
-
-        console.log(files[0].name)
 
         formData.append("file", files[0])
 
@@ -109,19 +107,18 @@ function UploadVideoPage(props) {
 
                     //gerenate thumbnail with this filepath ! 
 
-                    // axios.post('/api/video/thumbnail', variable)
-                    //     .then(response => {
-                    //         if (response.data.success) {
-                    //             setDuration(response.data.fileDuration)
-                    //             setThumbnail(response.data.thumbsFilePath)
-                    //         } else {
-                    //             alert('Failed to make the thumbnails');
-                    //         }
-                    //     })
-
+                    axios.post('/api/video/thumbnail', variable)
+                        .then(response => {
+                            if (response.data.success) {
+                                setDuration(response.data.fileDuration)
+                                setThumbnail(response.data.thumbsFilePath)
+                            } else {
+                                alert('Failed to make the thumbnails');
+                            }
+                        })
 
                 } else {
-                    alert('failed to save the video in server')
+                    alert('Failed to Upload the Video to the Server')
                 }
             })
 
@@ -151,7 +148,7 @@ function UploadVideoPage(props) {
 
                     {Thumbnail !== "" &&
                         <div>
-                            <img src={`http://localhost:5000/${Thumbnail}`} alt="Thumbnail" />
+                            <img src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${Thumbnail}`} alt="Thumbnail is Automatically being Generated..." />
                         </div>
                     }
                 </div>
