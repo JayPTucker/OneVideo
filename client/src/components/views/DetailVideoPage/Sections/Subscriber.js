@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Row, Col } from "react-bootstrap";
 
 function Subscriber(props) {
     const userTo = props.userTo
@@ -68,12 +69,11 @@ function Subscriber(props) {
 
 
     return (
-        <div>
+        <Col>
             <button onClick={onSubscribe} style={{ backgroundColor: `${Subscribed ? 'lightgray' : 'red'}`}}>
                 {SubscribeNumber} {Subscribed? 'Subscribed': 'Subscribe'}
             </button>
-            
-        </div>
+        </Col>
     )
 }
 

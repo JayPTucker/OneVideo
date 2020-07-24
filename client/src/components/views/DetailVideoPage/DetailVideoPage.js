@@ -33,13 +33,26 @@ function DetailVideoPage(props) {
         return (
             <Row>
                 <Col md={9} key={Video.title}>
-                    <div className="postPage" style={{ width: '100%' }}>
-                    <video style={{ width: '100%' }} src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${Video.filePath}`} controls></video>
-    
-                    {/* VIDEO AUTHOR: */}
-                    <p><b>{Video.writer.name}</b></p>
 
-                    <List.Item
+                    <video style={{ width: '100%' }} src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${Video.filePath}`} controls></video>
+                    <Row>
+                        <Col>
+                            <Avatar src={Video.writer && Video.writer.image} />
+                            <p><b>{Video.writer.name}</b></p>
+                            <p>{Video.title}</p>
+                            <p>{Video.description}</p>
+                        </Col>
+
+                        <Col>
+                            <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />
+                        </Col>
+                    </Row>
+                    {/* VIDEO AUTHOR: */}
+                    
+
+
+                
+                    {/* <List.Item
                         actions={[ <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />]}
                     >
                         <List.Item.Meta
@@ -47,14 +60,15 @@ function DetailVideoPage(props) {
                             title={Video.title}
                             description={Video.description}
                         />
-                        <div></div>
-                    </List.Item>
+
+                    </List.Item> */}
     
-                    </div>
+
                 </Col>
     
                 <Col md={3}>
                     <SideVideo />
+                    <p>test</p>
                 </Col>
             </Row>
             

@@ -28,7 +28,7 @@ function SideVideo() {
         var seconds = Math.floor(video.duration - minutes * 60);
 
        return (
-       <Row>
+       <Row style={{ padding:'20px' }}>
             <Col>
                 <a href={`/watch/${video._id}`}  style={{ color:'gray' }}>
                     <img style={{ width: "100%" }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail" />
@@ -43,14 +43,16 @@ function SideVideo() {
                     <span>{minutes}:{seconds}</span>
                 </a>
             </Col>
+
+            
         </Row>
        )
     })
 
     return (
-        <Col>
+        <div>
             {sideVideoItem}
-        </Col>
+        </div>
         
        
     )
