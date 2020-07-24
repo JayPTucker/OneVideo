@@ -68,7 +68,6 @@ function DetailVideoPage(props) {
     
                 <Col md={3}>
                     <SideVideo />
-                    <p>test</p>
                 </Col>
             </Row>
             
