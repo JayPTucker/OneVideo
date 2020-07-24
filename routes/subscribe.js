@@ -46,6 +46,16 @@ router.post("/subscribe", (req, res) => {
 
 })
 
+router.post("/unsubscribe", (req, res) => {
+
+    Subscriber.findOneAndDelete({ userTo: req.body.userTo, userFrom: req.body.userFrom })
+        .exec((err, doc) => {
+            if(err) return res.status(400).json({ success: false, err})
+            res.status(200).json({ success: true, doc })
+        })
+
+})
+
 
 
 module.exports = router;

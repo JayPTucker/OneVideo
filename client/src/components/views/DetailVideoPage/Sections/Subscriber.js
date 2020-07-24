@@ -17,12 +17,23 @@ function Subscriber(props) {
 
         if(Subscribed) {
             // SUBSCRIBED ALREADY:
+            axios.post('/api/subscribe/unsubscribe', subscribeVariables)
+                .then(response => {
+                    if(response.data.success){
+                        setSubscribeNumber(SubscribeNumber - 1)
+                        setSubscribed(!Subscribed)
+                    } else {
+                        alert('Failed to Unsubscribe from this Channel')
+                    }
+                })
+
         } else {
             // NOT SUBSCRIBED YET:
             axios.post('/api/subscribe/subscribe', subscribeVariables)
                 .then(response => {
                     if(response.data.success) {
-
+                        setSubscribeNumber(SubscribeNumber + 1)
+                        setSubscribed(!Subscribed)
                     } else {
                         alert('Failed to Subscribe to this Channel')
                     }
@@ -58,7 +69,7 @@ function Subscriber(props) {
 
     return (
         <div>
-            <button onClick={onSubscribe}>
+            <button onClick={onSubscribe} style={{ backgroundColor: `${Subscribed ? 'lightgray' : 'red'}`}}>
                 {SubscribeNumber} {Subscribed? 'Subscribed': 'Subscribe'}
             </button>
             
