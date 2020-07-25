@@ -110,29 +110,6 @@ router.post("/thumbnail", (req, res) => {
       filename:'thumbnail-%b.png'
   });
 
-
-  // const uploadFile = (fileName) => {
-  //   // read content from the file
-  //     const fileContent = fs.readFileSync(fileName);
-
-  //     // setting up s3 upload parameters
-  //     const params = {
-  //         Bucket: BUCKET_NAME,
-  //         Key: req.body.filePath, // file name you want to save as
-  //         Body: fileContent
-  //     };
-
-  //     // Uploading files to the bucket
-  //     s3.upload(params, function(err, data) {
-  //         if (err) {
-  //             throw err
-  //         }
-  //         console.log(`File uploaded successfully. ${data.Location}`)
-  //     });
-  // };
-
-  // uploadFile(req.body.filePath)
-
 });
 
 // Shows all the videos on the Home page
@@ -169,28 +146,6 @@ router.post("/uploadVideo", (req, res) => {
   uploadFile(req.body.filePath)
 
 });
-
-
-// Allows us to Watch the Videos
-// router.post("/getVideo", (req, res) => {
-//     Video.findOne({ "_id" : req.body.videoID })
-//     .populate('writer')
-//     .exec((err, video) => {
-//       if(err) return res.status(400).send(err);
-//       res.status(200).json({ success: true, video })
-//     })
-// });
-
-
-// router.get("/getVideos", (req, res) => {
-
-//     Video.find()
-//       .populate('writer')
-//       .exec((err, videos) => {
-//         if(err) return res.status(400).send(err);
-//         res.status(200).json({ success: true, videos })
-//       })
-// });
 
 router.post("/getSubscriptionVideos", (req, res) => {
     
