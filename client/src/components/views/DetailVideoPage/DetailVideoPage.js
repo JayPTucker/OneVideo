@@ -5,7 +5,7 @@ import { List, Avatar } from 'antd';
 import Subscriber from './Sections/Subscriber';
 import SideVideo from './Sections/SideVideo';
 import Comments from './Sections/Comments';
-
+import LikeDislikes from './Sections/LikeDislikes';
 import "./DetailVideoPage.css";
 
 import axios from 'axios';
@@ -61,7 +61,10 @@ function DetailVideoPage(props) {
                         </Col>
 
                         <Col>
-                            <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')} />
+                            <LikeDislikes video videoID={videoID} userId={localStorage.getItem('userId')} />
+                        </Col>
+                        <Col>
+                            <Subscriber userTo={Video.writer._id} userFrom={localStorage.getItem('userId')}/>
                         </Col>
                     </Row>
 

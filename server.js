@@ -28,6 +28,8 @@ app.use('/api/video', require('./routes/video'));
 app.use('/api/watch', require('./routes/watch'));
 app.use('/api/subscribe', require('./routes/subscribe'));
 app.use('/api/comment', require('./routes/comment'));
+app.use('/api/like', require('./routes/like'));
+
 
 
 // Serve static assets if in production
