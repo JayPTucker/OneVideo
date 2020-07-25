@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Row, Col } from "react-bootstrap";
 import SingleComment from './SingleComment'
+import ReplyComment from './ReplyComment'
+
 
 function Comments(props) {
 
@@ -48,6 +50,7 @@ function Comments(props) {
 
                     <React.Fragment>
                         <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} />
                     </React.Fragment>
                 )
             ))}

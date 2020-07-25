@@ -65,9 +65,7 @@ function DetailVideoPage(props) {
                         </Col>
                     </Row>
 
-                    <Row>
-                        <Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment} />
-                    </Row>
+                    <Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment} />
 
                 </Col>
     
