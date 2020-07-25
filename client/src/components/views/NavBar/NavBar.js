@@ -4,7 +4,7 @@ import LoginSection from './Sections/LoginSection';
 
 import { Row, Col } from "react-bootstrap";
 
-import './Sections/Navbar.css';
+import './Navbar.css';
 
 function NavBar() {
   return (

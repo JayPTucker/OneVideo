@@ -3,6 +3,8 @@ import { Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import moment from 'moment';
 
+import "./LandingPage.css"
+
 function LandingPage() {
 
     const [Videos, setVideos] = useState([])
@@ -26,19 +28,15 @@ function LandingPage() {
         return <Col key={video._id}>
                 <a href={`/watch/${video._id}`}>
                     <img style={{ width: '20%' }} alt="thumbnail" src={`https://s3.us-east-2.amazonaws.com/jpt-onevideo.com/${video.thumbnail}`} />
-                    <span style={{ marginLeft: '3rem' }}> Views: {video.views} </span> ||
-                    <span> {minutes}:{seconds}</span>
-                        
-                    <div
-                        avatar={
-                            <div src={video.writer.image} />
-                        }
-                    />
-                    <span>{video.title}<br/></span>
-                    <span>{video.writer.name}</span>
-                    
-                    - <span> {moment(video.createdAt).format("MMM Do YYYY")} </span>
+                    <p className="timestamp">{minutes}:{seconds}<br/></p>
+                    <p className="videoTitle">{video.title}</p>
+
                 </a>
+
+                <p>{video.writer.name}</p>
+                <p>{video.views} Views</p>
+                
+                <p> {moment(video.createdAt).format("MMM Do YYYY")}</p>
         </Col>
     })
 

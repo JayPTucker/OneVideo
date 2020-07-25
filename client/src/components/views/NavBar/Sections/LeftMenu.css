@@ -1,0 +1,7 @@
+.quickLink {
+    text-decoration: none;
+    color: white;
+    font-size: calc(1px + 1.3vmax);
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+}

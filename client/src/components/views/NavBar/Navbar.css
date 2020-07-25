@@ -1,0 +1,38 @@
+.logo {
+  color: rgb(36, 116, 192);
+  font-size: 37px;
+  font-weight: bolder;
+  text-shadow: 1px 1px 1px white;
+  float: left;
+}
+
+/* .LeftMenu {
+  justify-content: center !important;
+} */
+
+.LoginSection {
+  float: right;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+li {
+  display: inline;
+}
+
+.NavBarRow {
+  background-color: rgb(173, 173, 173);
+  box-shadow: 1px 1px 5px black;
+  padding: 20px 0px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.NavBarRow:hover {
+  background-color: rgb(148, 148, 148);
+  box-shadow: 1px 5px 8px black;
+}

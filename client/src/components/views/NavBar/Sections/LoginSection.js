@@ -4,6 +4,8 @@ import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
+import "./LoginSection.css"
+
 function RightMenu(props) {
   const user = useSelector(state => state.user)
 
@@ -27,7 +29,7 @@ function RightMenu(props) {
   } else {
     return (
       <div>
-        <button onClick={logoutHandler}>Logout</button>
+        <button className="logout-btn" onClick={logoutHandler}>Logout</button>
       </div>
     )
   }
