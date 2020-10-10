@@ -6,7 +6,7 @@
  
 **GitHub Repository: [Click me!](https://github.com/JayPTucker/onevideo)** 
 
-**My Website: [Click me!](https://jayptucker.github.io/)**
+**My Website: [Click me!](https://www.jayptucker.com/)**
  
 ## 📄 Description: <a name='description'></a> 
 **Updated (7/25/20):**
